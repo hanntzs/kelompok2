@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (mysqli_stmt_execute($update)) {
             mysqli_stmt_close($update);
             mysqli_close($connection);
-            redirectWithMessage("Data mahasiswa berhasil diperbarui.");
+            redirectWithMessage("Data mahasiswa berhasil diperbarui bangg.");
         }
 
         $errors[] = "Data gagal diperbarui. Periksa kembali data yang dimasukkan.";
@@ -151,12 +151,93 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Mahasiswa</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 30px; color: #222; }
-        .container { max-width: 650px; margin: 0 auto; }
-        label { display: block; margin-top: 12px; font-weight: bold; }
-        input, select { box-sizing: border-box; width: 100%; padding: 9px; margin-top: 5px; }
-        .button { display: inline-block; margin-top: 16px; padding: 9px 14px; cursor: pointer; }
-        .errors { background: #fff0f0; border: 1px solid #d99; padding: 10px 20px; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 40px 20px; 
+            background-color: #f4f6f9; 
+            color: #333; 
+        }
+        .container { 
+            max-width: 550px; 
+            margin: 0 auto; 
+            background: #ffffff; 
+            padding: 28px 32px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        }
+        h1 { 
+            margin-top: 0; 
+            margin-bottom: 24px; 
+            font-size: 24px; 
+            color: #1a252f; 
+            border-bottom: 2px solid #e9ecef; 
+            padding-bottom: 12px; 
+        }
+        label { 
+            display: block; 
+            margin-top: 14px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            color: #495057; 
+        }
+        input, select { 
+            box-sizing: border-box; 
+            width: 100%; 
+            padding: 10px 12px; 
+            margin-top: 6px; 
+            border: 1px solid #ced4da; 
+            border-radius: 6px; 
+            font-size: 14px; 
+            transition: border-color 0.2s, box-shadow 0.2s; 
+        }
+        input:focus, select:focus { 
+            border-color: #0d6efd; 
+            outline: none; 
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15); 
+        }
+        .button-group { 
+            margin-top: 24px; 
+            display: flex; 
+            gap: 10px; 
+        }
+        .button { 
+            display: inline-block; 
+            padding: 10px 18px; 
+            border-radius: 6px; 
+            font-size: 14px; 
+            font-weight: 600; 
+            text-decoration: none; 
+            text-align: center; 
+            cursor: pointer; 
+            border: none; 
+        }
+        .button-primary { 
+            background-color: #0d6efd; 
+            color: #fff; 
+        }
+        .button-primary:hover { 
+            background-color: #0b5ed7; 
+        }
+        .button-secondary { 
+            background-color: #6c757d; 
+            color: #fff; 
+        }
+        .button-secondary:hover { 
+            background-color: #5c636a; 
+        }
+        .errors { 
+            background: #f8d7da; 
+            border: 1px solid #f5c2c7; 
+            color: #842029; 
+            padding: 12px 16px; 
+            border-radius: 6px; 
+            margin-bottom: 20px; 
+        }
+        .errors ul { 
+            margin: 6px 0 0 0; 
+            padding-left: 20px; 
+        }
     </style>
 </head>
 <body>
@@ -202,8 +283,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label for="gpa">IPK (lebih dari 0 sampai 4)</label>
         <input type="number" id="gpa" name="gpa" min="0.01" max="4" step="0.01" required value="<?= h($student["gpa"]) ?>">
 
-        <button class="button" type="submit">Simpan Perubahan</button>
-        <a class="button" href="student_view.php">Batal</a>
+        <div class="button-group">
+            <button class="button button-primary" type="submit">Simpan Perubahan</button>
+            <a class="button button-secondary" href="student_view.php">Batal</a>
+        </div>
     </form>
 </div>
 </body>
